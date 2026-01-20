@@ -26,7 +26,6 @@ class ProfileSeeder extends Seeder
             'happy_clients' => 50,
             'about_me' => 'I am a passionate UI/UX Designer and Frontend Developer based in New York. I have a strong background in design principles and a keen eye for detail. My goal is to create intuitive and aesthetically pleasing digital experiences that solve real-world problems.',
             'headline' => 'Welcome to my world',
-            'position' => 'Senior Software Engineer',
             'created_at' => now(),
             'updated_at' => now(),
         ]);
