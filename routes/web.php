@@ -20,5 +20,5 @@ Route::livewire('/services/', 'pages::backend.service.create-service')->name('se
 Route::livewire('/technical-skills/', 'pages::backend.technical-skill.create-technical-skill')->name('technical-skills');
 Route::livewire('/personal-interests/', 'pages::backend.personal-interest.create-personal-interest')->name('personal-interests');
 
-//frontend routes
-Route::livewire('/','pages::frontend.home.home-page')->name('home');
+// frontend routes
+Route::livewire('/', 'pages::frontend.home.home-page')->name('home');

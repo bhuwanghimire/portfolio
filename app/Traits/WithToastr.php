@@ -8,11 +8,8 @@ trait WithToastr
     {
         $this->dispatch('toast', [
             'message' => $message,
-            'type' => $type
+            'type' => $type,
         ]);
-
-
-
 
     }
 

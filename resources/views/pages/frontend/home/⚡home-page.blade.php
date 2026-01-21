@@ -83,43 +83,8 @@ new #[Layout('welcome')] class extends Component {
     @endisland
 
     <!-- About Section -->
-    <section id="about" class="py-20 bg-gray-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">About Me</h2>
-                <div class="w-16 h-1 bg-primary mx-auto rounded"></div>
-            </div>
+    <livewire:pages::frontend.section.about />
 
-            <div class="bg-white p-8 md:p-12 rounded-3xl shadow-sm border border-gray-100">
-                <p class="text-lg text-gray-600 leading-8 mb-8 text-center max-w-3xl mx-auto">
-                    I am a passionate UI/UX Designer and Frontend Developer based in New York. I have a strong
-                    background in design principles and a keen eye for detail. My goal is to create intuitive and
-                    aesthetically pleasing digital experiences that solve real-world problems.
-                </p>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 text-center">
-                    <div class="p-4">
-                        <span class="block text-sm text-gray-400 uppercase tracking-wider mb-2">Name</span>
-                        <span class="font-semibold text-gray-900 text-lg">Alex Doe</span>
-                    </div>
-                    <div class="p-4">
-                        <span class="block text-sm text-gray-400 uppercase tracking-wider mb-2">Email</span>
-                        <span class="font-semibold text-gray-900 text-lg">alex@example.com</span>
-                    </div>
-                    <div class="p-4">
-                        <span class="block text-sm text-gray-400 uppercase tracking-wider mb-2">Location</span>
-                        <span class="font-semibold text-gray-900 text-lg">New York, USA</span>
-                    </div>
-                    <div class="p-4">
-                        <span class="block text-sm text-gray-400 uppercase tracking-wider mb-2">Availability</span>
-                        <span
-                            class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800">
-                            Open to work
-                        </span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
 
     <!-- Services Section -->
     <section id="services" class="py-20 bg-white">
@@ -301,76 +266,12 @@ new #[Layout('welcome')] class extends Component {
 
             <div class="grid lg:grid-cols-2 gap-12">
                 <!-- Education -->
-                <div>
-                    <h3 class="text-2xl font-bold text-gray-900 mb-8 flex items-center">
-                        <svg class="w-6 h-6 text-primary mr-2" fill="none" stroke="currentColor"
-                            viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M12 14l9-5-9-5-9 5 9 5z"></path>
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z">
-                            </path>
-                        </svg>
-                        Education
-                    </h3>
-                    <div class="border-l-2 border-primary/20 ml-3 space-y-12">
-                        <div class="relative pl-8">
-                            <span
-                                class="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-primary ring-4 ring-primaryLight"></span>
-                            <span class="text-sm text-primary font-bold bg-primaryLight/50 px-3 py-1 rounded-full">2018
-                                - 2020</span>
-                            <h4 class="text-xl font-bold text-gray-900 mt-2">Master in Design</h4>
-                            <span class="text-gray-500 text-sm">New York University</span>
-                            <p class="text-gray-600 mt-2">Specialized in User Experience Design and Human-Computer
-                                Interaction.</p>
-                        </div>
-                        <div class="relative pl-8">
-                            <span
-                                class="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-white border-2 border-primary"></span>
-                            <span class="text-sm text-gray-500 font-bold bg-gray-100 px-3 py-1 rounded-full">2014 -
-                                2018</span>
-                            <h4 class="text-xl font-bold text-gray-900 mt-2">Bachelor in CS</h4>
-                            <span class="text-gray-500 text-sm">Boston University</span>
-                            <p class="text-gray-600 mt-2">Fundamental knowledge of software engineering, algorithms,
-                                and web technologies.</p>
-                        </div>
-                    </div>
-                </div>
+                <livewire:pages::frontend.section.education lazy/>
 
                 <!-- Experience -->
-                <div>
-                    <h3 class="text-2xl font-bold text-gray-900 mb-8 flex items-center">
-                        <svg class="w-6 h-6 text-primary mr-2" fill="none" stroke="currentColor"
-                            viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z">
-                            </path>
-                        </svg>
-                        Experience
-                    </h3>
-                    <div class="border-l-2 border-primary/20 ml-3 space-y-12">
-                        <div class="relative pl-8">
-                            <span
-                                class="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-primary ring-4 ring-primaryLight"></span>
-                            <span class="text-sm text-primary font-bold bg-primaryLight/50 px-3 py-1 rounded-full">2021
-                                - Present</span>
-                            <h4 class="text-xl font-bold text-gray-900 mt-2">Senior UI Designer</h4>
-                            <span class="text-gray-500 text-sm">Tech Solutions Inc.</span>
-                            <p class="text-gray-600 mt-2">Leading the design team for enterprise web applications and
-                                design systems.</p>
-                        </div>
-                        <div class="relative pl-8">
-                            <span
-                                class="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-white border-2 border-primary"></span>
-                            <span class="text-sm text-gray-500 font-bold bg-gray-100 px-3 py-1 rounded-full">2019 -
-                                2021</span>
-                            <h4 class="text-xl font-bold text-gray-900 mt-2">Web Developer</h4>
-                            <span class="text-gray-500 text-sm">Creative Agency</span>
-                            <p class="text-gray-600 mt-2">Developed responsive websites for various clients using HTML,
-                                CSS, and JS.</p>
-                        </div>
-                    </div>
-                </div>
+                <livewire:pages::frontend.section.experience lazy/>
+
+
             </div>
         </div>
     </section>

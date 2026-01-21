@@ -9,6 +9,6 @@ class PersonalInterest extends Model
     protected $fillable = ['title', 'icon', 'order', 'is_active'];
 
     protected $casts = [
-    'is_active' => 'boolean',
-];
+        'is_active' => 'boolean',
+    ];
 }

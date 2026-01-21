@@ -9,6 +9,6 @@ class TechnicalSkill extends Model
     protected $guarded = [];
 
     protected $casts = [
-    'is_active' => 'boolean',
-];
+        'is_active' => 'boolean',
+    ];
 }
