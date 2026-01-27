@@ -6,46 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Alex Dev | Personal Portfolio</title>
     <!-- Tailwind CSS via CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    @vite(['resources/js/frontend/main.js','resources/js/frontend/main.css'])
 
-    <!-- Tailwind Config for Custom Colors -->
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Poppins', 'sans-serif'],
-                    },
-                    colors: {
-                        primary: '#7c3aed', // Violet 600
-                        primaryDark: '#6d28d9', // Violet 700
-                        primaryLight: '#ddd6fe', // Violet 200
-                    }
-                }
-            }
-        }
-    </script>
-    <style>
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
+    <script src="https://kit.fontawesome.com"></script>
 
-        ::-webkit-scrollbar-track {
-            background: #f1f1f1;
-        }
 
-        ::-webkit-scrollbar-thumb {
-            background: #c4b5fd;
-            border-radius: 4px;
-        }
-
-        ::-webkit-scrollbar-thumb:hover {
-            background: #7c3aed;
-        }
-    </style>
 </head>
 
 <body class="bg-gray-50 text-gray-600 antialiased">

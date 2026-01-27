@@ -34,8 +34,7 @@ new #[Layout('welcome')] class extends Component {
                             <span class="text-3xl lg:text-5xl text-gray-500 font-semibold">{{ $profile->title }}</span>
                         </h1>
                         <p class="text-lg text-gray-600 mb-8 max-w-lg leading-relaxed">
-                            I build digital products that focus on user experience and business goals. Let's create
-                            something amazing together.
+                            {{ $profile->bio }}
                         </p>
 
                         <div class="flex flex-wrap gap-4">
@@ -149,109 +148,10 @@ new #[Layout('welcome')] class extends Component {
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid lg:grid-cols-2 gap-12">
                 <!-- Technical Skills Column -->
-                <div>
-                    <span class="text-primary font-semibold tracking-wide uppercase">Expertise</span>
-                    <h2 class="text-3xl font-bold text-gray-900 mt-2 mb-6">Technical Skills</h2>
-                    <p class="text-gray-600 mb-8">
-                        I am constantly learning new technologies. Currently, these are the tools and languages I use
-                        most frequently in my projects.
-                    </p>
-
-                    <div class="grid grid-cols-2 sm:grid-cols-3 gap-4">
-                        <div
-                            class="bg-white border border-gray-100 p-4 rounded-xl shadow-sm flex flex-col items-center justify-center hover:border-primary hover:shadow-md transition group">
-                            <svg class="w-8 h-8 text-orange-500 mb-2 group-hover:scale-110 transition" fill="none"
-                                viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
-                            </svg>
-                            <span class="font-semibold text-gray-800 text-sm">HTML/CSS</span>
-                        </div>
-                        <div
-                            class="bg-white border border-gray-100 p-4 rounded-xl shadow-sm flex flex-col items-center justify-center hover:border-primary hover:shadow-md transition group">
-                            <svg class="w-8 h-8 text-yellow-500 mb-2 group-hover:scale-110 transition" fill="none"
-                                viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M13 10V3L4 14h7v7l9-11h-7z" />
-                            </svg>
-                            <span class="font-semibold text-gray-800 text-sm">JavaScript</span>
-                        </div>
-                        <div
-                            class="bg-white border border-gray-100 p-4 rounded-xl shadow-sm flex flex-col items-center justify-center hover:border-primary hover:shadow-md transition group">
-                            <svg class="w-8 h-8 text-blue-400 mb-2 group-hover:scale-110 transition" fill="none"
-                                viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M14 10l-2 1m0 0l-2-1m2 1v2.5M20 7l-2 1m2-1l-2-1m2 1v2.5M14 4l-2-1-2 1M4 7l2-1M4 7l2 1M4 7v2.5M12 21l-2-1m2 1l2-1m-2 1v-2.5M6 18l-2-1v-2.5M18 18l2-1v-2.5" />
-                            </svg>
-                            <span class="font-semibold text-gray-800 text-sm">React JS</span>
-                        </div>
-                        <div
-                            class="bg-white border border-gray-100 p-4 rounded-xl shadow-sm flex flex-col items-center justify-center hover:border-primary hover:shadow-md transition group">
-                            <svg class="w-8 h-8 text-cyan-500 mb-2 group-hover:scale-110 transition" fill="none"
-                                viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.343L14.657 8l-1.657 1.343L11 7.343z" />
-                            </svg>
-                            <span class="font-semibold text-gray-800 text-sm">Tailwind</span>
-                        </div>
-                        <div
-                            class="bg-white border border-gray-100 p-4 rounded-xl shadow-sm flex flex-col items-center justify-center hover:border-primary hover:shadow-md transition group">
-                            <svg class="w-8 h-8 text-pink-500 mb-2 group-hover:scale-110 transition" fill="none"
-                                viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M7 4v16M17 4v16M3 8h4m10 0h4M3 12h18M3 16h4m10 0h4M4 20h16a1 1 0 001-1V5a1 1 0 00-1-1H4a1 1 0 00-1 1v14a1 1 0 001 1z" />
-                            </svg>
-                            <span class="font-semibold text-gray-800 text-sm">Figma</span>
-                        </div>
-                        <div
-                            class="bg-white border border-gray-100 p-4 rounded-xl shadow-sm flex flex-col items-center justify-center hover:border-primary hover:shadow-md transition group">
-                            <svg class="w-8 h-8 text-gray-700 mb-2 group-hover:scale-110 transition" fill="none"
-                                viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
-                            </svg>
-                            <span class="font-semibold text-gray-800 text-sm">Git</span>
-                        </div>
-                    </div>
-                </div>
+                <livewire:pages::frontend.section.technical-skill lazy />
 
                 <!-- Interests/Soft Skills Circles -->
-                <div>
-                    <span class="text-primary font-semibold tracking-wide uppercase">Personal</span>
-                    <h2 class="text-3xl font-bold text-gray-900 mt-2 mb-6">Interests</h2>
-                    <div class="grid grid-cols-2 sm:grid-cols-3 gap-6">
-                        <div
-                            class="aspect-square rounded-2xl bg-white shadow-sm flex flex-col items-center justify-center border border-gray-100 hover:border-primary transition group">
-                            <svg class="w-8 h-8 text-gray-400 group-hover:text-primary mb-3" fill="none"
-                                stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z">
-                                </path>
-                            </svg>
-                            <span class="font-medium text-gray-900">Photography</span>
-                        </div>
-                        <div
-                            class="aspect-square rounded-2xl bg-white shadow-sm flex flex-col items-center justify-center border border-gray-100 hover:border-primary transition group">
-                            <svg class="w-8 h-8 text-gray-400 group-hover:text-primary mb-3" fill="none"
-                                stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253">
-                                </path>
-                            </svg>
-                            <span class="font-medium text-gray-900">Reading</span>
-                        </div>
-                        <div
-                            class="aspect-square rounded-2xl bg-white shadow-sm flex flex-col items-center justify-center border border-gray-100 hover:border-primary transition group">
-                            <svg class="w-8 h-8 text-gray-400 group-hover:text-primary mb-3" fill="none"
-                                stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z">
-                                </path>
-                            </svg>
-                            <span class="font-medium text-gray-900">Travel</span>
-                        </div>
-                    </div>
-                </div>
+                <livewire:pages::frontend.section.personal-interest lazy />
             </div>
         </div>
     </section>
@@ -266,10 +166,10 @@ new #[Layout('welcome')] class extends Component {
 
             <div class="grid lg:grid-cols-2 gap-12">
                 <!-- Education -->
-                <livewire:pages::frontend.section.education lazy/>
+                <livewire:pages::frontend.section.education lazy />
 
                 <!-- Experience -->
-                <livewire:pages::frontend.section.experience lazy/>
+                <livewire:pages::frontend.section.experience lazy />
 
 
             </div>

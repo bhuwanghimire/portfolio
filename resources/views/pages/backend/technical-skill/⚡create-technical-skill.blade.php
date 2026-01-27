@@ -19,6 +19,9 @@ new class extends Component {
         'order' => 0,
         'is_active' => true,
     ];
+    public  $buttonText = 'Add Technical Skill';
+    public $action = 'addSkill';
+    public $activeSkillId = null;
 
     function loadSkills()
     {
@@ -73,6 +76,23 @@ new class extends Component {
         $this->loadSkills();
         $this->toastSuccess('Skill status updated!');
     }
+
+    public function editSkill($skillId)
+    {
+        $this->buttonText = 'Update Technical Skill';
+        $this->action = 'updateSkill';
+        $this->activeSkillId = $skillId;
+        $skill = \App\Models\TechnicalSkill::findOrFail($skillId);
+        $this->newSkill = $skill->toArray();
+    }
+
+    public function updateSkill(){
+        $skill = \App\Models\TechnicalSkill::findOrFail($this->activeSkillId);
+        $skill->update($this->newSkill);
+        $this->loadSkills();
+        $this->reset(['buttonText', 'action', 'activeSkillId', 'newSkill']);
+        $this->toastSuccess('Technical skill updated successfully!');
+    }
 };
 ?>
 
@@ -118,7 +138,11 @@ new class extends Component {
                                 <td class="px-4 py-2 text-center">
                                     <button wire:click="confirmDeleteSkill({{ $skill['id'] }})"
                                         class="text-red-500 hover:text-red-700 font-semibold">
-                                        🗑 Delete
+                                        <i class="fa-solid fa-trash"></i>
+                                    </button>
+                                    <button wire:click="editSkill({{ $skill['id'] }})"
+                                            class="text-blue-500 hover:text-blue-700 font-semibold">
+                                       <i class="fa-solid fa-pen-to-square"></i>
                                     </button>
                                 </td>
                             </tr>
@@ -170,10 +194,11 @@ new class extends Component {
             </div>
 
             <div class="mt-4 text-right">
-                <button wire:click="addSkill"
+                <button wire:click="{{$action}}"
                     class="bg-indigo-600 hover:bg-indigo-700 text-white px-5 py-2 rounded-lg shadow">
-                    ➕ Add Technical Skill
+                    ➕ {{$buttonText}}
                 </button>
+
             </div>
         </div>
 
