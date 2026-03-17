@@ -21,7 +21,7 @@ new #[Layout('welcome')] class extends Component {
 <div>
     <!-- Hero Section -->
     @island
-        <section id="home" class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden bg-white">
+        <section id="home" class="relative pt-32 pb-20 lg:pt-30P lg:pb-32 overflow-hidden bg-white">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                 <div class="grid lg:grid-cols-2 gap-12 items-center">
                     <div class="order-2 lg:order-1">
@@ -42,7 +42,7 @@ new #[Layout('welcome')] class extends Component {
                                 class="px-8 py-4 bg-primary text-white rounded-full font-semibold shadow-lg shadow-violet-200 hover:bg-primaryDark hover:-translate-y-1 transition duration-300">
                                 Hire Me
                             </a>
-                            <a href="#"
+                            <a href="{{ $profile->resume_url }}" target="_blank" download=""
                                 class="px-8 py-4 bg-white text-gray-900 border border-gray-200 rounded-full font-semibold hover:border-primary hover:text-primary transition duration-300 flex items-center gap-2">
                                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -86,62 +86,7 @@ new #[Layout('welcome')] class extends Component {
 
 
     <!-- Services Section -->
-    <section id="services" class="py-20 bg-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <span class="text-primary font-semibold tracking-wide uppercase">What I Do</span>
-                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mt-2">My Services</h2>
-            </div>
-
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Service 1 -->
-                <div
-                    class="p-8 rounded-2xl bg-gray-50 border border-gray-100 hover:border-primary/30 hover:shadow-xl hover:shadow-violet-100 transition duration-300 group">
-                    <div
-                        class="w-14 h-14 bg-white rounded-xl shadow-sm flex items-center justify-center text-primary mb-6 group-hover:bg-primary group-hover:text-white transition">
-                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z">
-                            </path>
-                        </svg>
-                    </div>
-                    <h3 class="text-xl font-bold text-gray-900 mb-3">Web Design</h3>
-                    <p class="text-gray-500">Creating stunning, user-friendly web interfaces that represent your brand
-                        effectively.</p>
-                </div>
-
-                <!-- Service 2 -->
-                <div
-                    class="p-8 rounded-2xl bg-gray-50 border border-gray-100 hover:border-primary/30 hover:shadow-xl hover:shadow-violet-100 transition duration-300 group">
-                    <div
-                        class="w-14 h-14 bg-white rounded-xl shadow-sm flex items-center justify-center text-primary mb-6 group-hover:bg-primary group-hover:text-white transition">
-                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path>
-                        </svg>
-                    </div>
-                    <h3 class="text-xl font-bold text-gray-900 mb-3">Development</h3>
-                    <p class="text-gray-500">Building robust and scalable websites using modern technologies and best
-                        practices.</p>
-                </div>
-
-                <!-- Service 3 -->
-                <div
-                    class="p-8 rounded-2xl bg-gray-50 border border-gray-100 hover:border-primary/30 hover:shadow-xl hover:shadow-violet-100 transition duration-300 group">
-                    <div
-                        class="w-14 h-14 bg-white rounded-xl shadow-sm flex items-center justify-center text-primary mb-6 group-hover:bg-primary group-hover:text-white transition">
-                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"></path>
-                        </svg>
-                    </div>
-                    <h3 class="text-xl font-bold text-gray-900 mb-3">App Design</h3>
-                    <p class="text-gray-500">Designing intuitive mobile applications for both iOS and Android
-                        platforms.</p>
-                </div>
-            </div>
-        </div>
-    </section>
+    <livewire:pages::frontend.section.service />
 
     <!-- Skills Section -->
     <section class="py-20 bg-gray-50">

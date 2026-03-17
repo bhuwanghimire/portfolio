@@ -141,7 +141,6 @@ new class extends Component {
             'twitter' => $this->twitter,
             //            'skills' => $this->skills,
             'languages' => $this->languages,
-            'resume_url' => $this->resume_url,
             'about_me' => $this->about_me,
             'headline' => $this->headline,
             'years_experience' => $this->years_experience,

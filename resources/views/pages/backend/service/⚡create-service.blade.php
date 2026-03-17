@@ -7,13 +7,18 @@ use Livewire\Component;
 new class extends Component {
     use WithToastr;
 
-    public function mount()
+    public string $editingServiceId;
+    public string $buttonText = 'Add Service';
+    public string $submitFunctionName = 'addService';
+    public  bool $isEdit = false;
+
+    public function mount() : void
     {
         $this->services = \App\Models\Service::orderBy('order')->get()->toArray();
     }
 
-    public $services = [];
-    public $newService = [
+    public array $services = [];
+    public array $newService = [
         'title' => '',
         'slug' => '',
         'description' => '',
@@ -27,9 +32,15 @@ new class extends Component {
         $this->services = \App\Models\Service::orderBy('order')->get()->toArray();
     }
 
-    public function addService()
+    public function addService() : void
     {
-        \App\Models\Service::create($this->newService);
+
+
+        if(!$this->isEdit){
+            \App\Models\Service::create($this->newService);
+        }else{
+            \App\Models\Service::findOrFail($this->editingServiceId)->update($this->newService);
+        }
 
         $this->newService = [
             'title' => '',
@@ -41,10 +52,11 @@ new class extends Component {
         ];
 
         $this->loadServices();
+        $this->isEdit = false;
         $this->toastSuccess('Service added successfully!');
     }
 
-    public function confirmDeleteService($serviceId)
+    public function confirmDeleteService($serviceId) : void
     {
         $this->dispatch('swal:service', [
             'id' => $serviceId,
@@ -57,7 +69,7 @@ new class extends Component {
     }
 
     #[On('removeService')]
-    public function removeService($id)
+    public function removeService($id) : void
     {
         \App\Models\Service::findOrFail($id)->delete();
         $this->loadServices();
@@ -68,7 +80,7 @@ new class extends Component {
         ]);
     }
 
-    public function toggleStatus($serviceId)
+    public function toggleStatus($serviceId) : void
     {
         $service = \App\Models\Service::findOrFail($serviceId);
         $service->is_active = !$service->is_active;
@@ -77,6 +89,16 @@ new class extends Component {
         $this->loadServices();
         $this->toastSuccess('Service status updated!');
     }
+
+    function editService($serviceId) : void
+    {
+        $service = \App\Models\Service::findOrFail($serviceId);
+        $this->editingServiceId = $serviceId;
+        $this->newService = $service->toArray();
+        $this->buttonText = 'Update Service';
+        $this->isEdit = true;
+    }
+
 };
 ?>
 
@@ -90,38 +112,42 @@ new class extends Component {
             <div class="overflow-x-auto">
                 <table class="min-w-full bg-white border border-gray-200 rounded-lg">
                     <thead class="bg-indigo-50">
-                        <tr>
-                            <th class="px-4 py-2 text-left text-sm font-semibold text-gray-700">Order</th>
-                            <th class="px-4 py-2 text-left text-sm font-semibold text-gray-700">Title</th>
-                            <th class="px-4 py-2 text-left text-sm font-semibold text-gray-700">Slug</th>
-                            <th class="px-4 py-2 text-left text-sm font-semibold text-gray-700">Description</th>
-                            <th class="px-4 py-2 text-left text-sm font-semibold text-gray-700">Icon</th>
-                            <th class="px-4 py-2 text-center text-sm font-semibold text-gray-700">Status</th>
-                            <th class="px-4 py-2 text-center text-sm font-semibold text-gray-700">Action</th>
-                        </tr>
+                    <tr>
+                        <th class="px-4 py-2 text-left text-sm font-semibold text-gray-700">Order</th>
+                        <th class="px-4 py-2 text-left text-sm font-semibold text-gray-700">Title</th>
+                        <th class="px-4 py-2 text-left text-sm font-semibold text-gray-700">Slug</th>
+                        <th class="px-4 py-2 text-left text-sm font-semibold text-gray-700">Description</th>
+                        <th class="px-4 py-2 text-left text-sm font-semibold text-gray-700">Icon</th>
+                        <th class="px-4 py-2 text-center text-sm font-semibold text-gray-700">Status</th>
+                        <th class="px-4 py-2 text-center text-sm font-semibold text-gray-700">Action</th>
+                    </tr>
                     </thead>
                     <tbody class="divide-y divide-gray-200">
-                        @foreach ($services as $service)
-                            <tr class="hover:bg-gray-50 transition duration-150">
-                                <td class="px-4 py-2 text-gray-800">{{ $service['order'] }}</td>
-                                <td class="px-4 py-2 text-gray-800 font-medium">{{ $service['title'] }}</td>
-                                <td class="px-4 py-2 text-gray-600">{{ $service['slug'] }}</td>
-                                <td class="px-4 py-2 text-gray-600">{{ Str::limit($service['description'], 50) }}</td>
-                                <td class="px-4 py-2 text-gray-600">{{ $service['icon'] ?? 'N/A' }}</td>
-                                <td class="px-4 py-2 text-center">
-                                    <button wire:click="toggleStatus({{ $service['id'] }})"
+                    @foreach ($services as $service)
+                        <tr class="hover:bg-gray-50 transition duration-150">
+                            <td class="px-4 py-2 text-gray-800">{{ $service['order'] }}</td>
+                            <td class="px-4 py-2 text-gray-800 font-medium">{{ $service['title'] }}</td>
+                            <td class="px-4 py-2 text-gray-600">{{ $service['slug'] }}</td>
+                            <td class="px-4 py-2 text-gray-600">{{ Str::limit($service['description'], 50) }}</td>
+                            <td class="px-4 py-2 text-gray-600">{{ $service['icon'] ?? 'N/A' }}</td>
+                            <td class="px-4 py-2 text-center">
+                                <button wire:click="toggleStatus({{ $service['id'] }})"
                                         class="px-3 py-1 rounded-full text-xs font-semibold {{ $service['is_active'] ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700' }}">
-                                        {{ $service['is_active'] ? '✓ Active' : '✗ Inactive' }}
-                                    </button>
-                                </td>
-                                <td class="px-4 py-2 text-center">
-                                    <button wire:click="confirmDeleteService({{ $service['id'] }})"
+                                    {{ $service['is_active'] ? '✓ Active' : '✗ Inactive' }}
+                                </button>
+                            </td>
+                            <td class="px-4 py-2 text-center">
+                                <button wire:click="editService({{ $service['id'] }})"
+                                        class="text-blue-500 hover:text-blue-700 font-semibold">
+                                    📝 Edit
+                                </button>
+                                <button wire:click="confirmDeleteService({{ $service['id'] }})"
                                         class="text-red-500 hover:text-red-700 font-semibold">
-                                        🗑 Delete
-                                    </button>
-                                </td>
-                            </tr>
-                        @endforeach
+                                    🗑 Delete
+                                </button>
+                            </td>
+                        </tr>
+                    @endforeach
                     </tbody>
                 </table>
             </div>
@@ -143,47 +169,47 @@ new class extends Component {
                 <div>
                     <label class="block text-sm font-medium mb-1">Title</label>
                     <input wire:model="newService.title" placeholder="e.g. Web Design"
-                        class="w-full border rounded-lg p-2 focus:ring focus:ring-indigo-200">
+                           class="w-full border rounded-lg p-2 focus:ring focus:ring-indigo-200">
                 </div>
 
                 <div>
                     <label class="block text-sm font-medium mb-1">Slug</label>
                     <input wire:model="newService.slug" placeholder="e.g. web-design"
-                        class="w-full border rounded-lg p-2 focus:ring focus:ring-indigo-200">
+                           class="w-full border rounded-lg p-2 focus:ring focus:ring-indigo-200">
                 </div>
 
                 <div>
                     <label class="block text-sm font-medium mb-1">Icon</label>
                     <input wire:model="newService.icon" placeholder="Icon class or path"
-                        class="w-full border rounded-lg p-2 focus:ring focus:ring-indigo-200">
+                           class="w-full border rounded-lg p-2 focus:ring focus:ring-indigo-200">
                 </div>
 
                 <div>
                     <label class="block text-sm font-medium mb-1">Order</label>
                     <input wire:model="newService.order" type="number" placeholder="0"
-                        class="w-full border rounded-lg p-2 focus:ring focus:ring-indigo-200">
+                           class="w-full border rounded-lg p-2 focus:ring focus:ring-indigo-200">
                 </div>
 
                 <div class="md:col-span-2">
                     <label class="block text-sm font-medium mb-1">Description</label>
                     <textarea wire:model="newService.description" placeholder="Describe your service" rows="3"
-                        class="w-full border rounded-lg p-2 focus:ring focus:ring-indigo-200">
+                              class="w-full border rounded-lg p-2 focus:ring focus:ring-indigo-200">
                     </textarea>
                 </div>
 
                 <div class="md:col-span-2">
                     <label class="flex items-center gap-2">
                         <input type="checkbox" wire:model="newService.is_active"
-                            class="rounded border-gray-300 text-indigo-600 focus:ring-indigo-500">
+                               class="rounded border-gray-300 text-indigo-600 focus:ring-indigo-500">
                         <span class="text-sm font-medium">Active</span>
                     </label>
                 </div>
             </div>
 
             <div class="mt-4 text-right">
-                <button wire:click="addService"
-                    class="bg-indigo-600 hover:bg-indigo-700 text-white px-5 py-2 rounded-lg shadow">
-                    ➕ Add Service
+                <button wire:click="{{ $submitFunctionName }}"
+                        class=" bg-indigo-600 hover:bg-indigo-700 text-white px-5 py-2 rounded-lg shadow">
+                    ➕ {{ $buttonText }}
                 </button>
             </div>
         </div>

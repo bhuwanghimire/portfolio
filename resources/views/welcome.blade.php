@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Alex Dev | Personal Portfolio</title>
     <!-- Tailwind CSS via CDN -->
-    @vite(['resources/js/frontend/main.js','resources/js/frontend/main.css'])
+    @vite(['resources/js/frontend/main.js', 'resources/js/frontend/main.css'])
 
     <script src="https://kit.fontawesome.com"></script>
 
@@ -21,7 +21,7 @@
             <div class="flex justify-between items-center h-20">
                 <!-- Logo -->
                 <div class="flex-shrink-0 flex items-center">
-                    <a href="#" class="text-2xl font-bold text-gray-900">
+                    <a href="{{ route('home') }}" class="text-2xl font-bold text-gray-900">
                         Alex<span class="text-primary">.</span>
                     </a>
                 </div>
