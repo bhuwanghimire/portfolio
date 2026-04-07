@@ -11,12 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('technical_skills', function (Blueprint $table) {
+        Schema::create('contact_messages', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
-            $table->string('category')->default('Frontend');
-            $table->integer('order')->default(0);
-            $table->boolean('is_active')->default(true);
+            $table->string('first_name');
+            $table->string('last_name')->nullable();
+            $table->string('email');
+            $table->string('subject')->nullable();
+            $table->text('message');
+            $table->boolean('is_read')->default(false);
             $table->timestamps();
         });
     }
@@ -26,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('technical_skills');
+        Schema::dropIfExists('contact_messages');
     }
 };

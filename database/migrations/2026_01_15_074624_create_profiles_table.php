@@ -27,7 +27,6 @@ return new class extends Migration
             $table->string('twitter')->nullable();
             $table->date('date_of_birth')->nullable();
             $table->string('resume_url')->nullable(); // CV/Resume file URL
-            $table->json('languages')->nullable(); // Array of languages
             $table->integer('years_experience')->default(0); // e.g., 7
             $table->integer('completed_projects')->default(0); // e.g., 120
             $table->integer('happy_clients')->default(0); // e.g., 50

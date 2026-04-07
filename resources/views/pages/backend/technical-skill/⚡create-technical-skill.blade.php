@@ -15,6 +15,7 @@ new class extends Component {
     public $technicalSkills = [];
     public $newSkill = [
         'title' => '',
+        'category' => 'Frontend',
         'icon' => '',
         'order' => 0,
         'is_active' => true,
@@ -34,6 +35,7 @@ new class extends Component {
 
         $this->newSkill = [
             'title' => '',
+            'category' => 'Frontend',
             'icon' => '',
             'order' => 0,
             'is_active' => true,
@@ -108,6 +110,7 @@ new class extends Component {
                     <thead class="bg-indigo-50">
                         <tr>
                             <th class="px-4 py-2 text-left text-sm font-semibold text-gray-700">Order</th>
+                            <th class="px-4 py-2 text-left text-sm font-semibold text-gray-700">Category</th>
                             <th class="px-4 py-2 text-left text-sm font-semibold text-gray-700">Title</th>
                             <th class="px-4 py-2 text-left text-sm font-semibold text-gray-700">Icon</th>
                             <th class="px-4 py-2 text-center text-sm font-semibold text-gray-700">Status</th>
@@ -118,6 +121,9 @@ new class extends Component {
                         @foreach ($technicalSkills as $skill)
                             <tr class="hover:bg-gray-50 transition duration-150">
                                 <td class="px-4 py-2 text-gray-800">{{ $skill['order'] }}</td>
+                                <td class="px-4 py-2 text-gray-800">
+                                    <span class="bg-gray-100 text-gray-700 px-2 py-1 rounded text-xs font-medium">{{ $skill['category'] ?? 'Frontend' }}</span>
+                                </td>
                                 <td class="px-4 py-2 text-gray-800 font-medium">{{ $skill['title'] }}</td>
                                 <td class="px-4 py-2 text-gray-600">
                                     @if ($skill['icon'])
@@ -172,6 +178,15 @@ new class extends Component {
                 </div>
 
                 <div>
+                    <label class="block text-sm font-medium mb-1">Category</label>
+                    <select wire:model="newSkill.category" class="w-full border rounded-lg p-2 focus:ring focus:ring-indigo-200">
+                        <option value="Frontend">Frontend</option>
+                        <option value="Backend">Backend</option>
+                        <option value="Tools & Cloud">Tools & Cloud</option>
+                    </select>
+                </div>
+
+                <div>
                     <label class="block text-sm font-medium mb-1">Icon</label>
                     <input wire:model="newSkill.icon" placeholder="e.g. fab fa-laravel, devicon-react-original"
                         class="w-full border rounded-lg p-2 focus:ring focus:ring-indigo-200">
@@ -204,6 +219,9 @@ new class extends Component {
 
     </div>
 </div>
+
+
+<script></script>
 
 
 <script></script>

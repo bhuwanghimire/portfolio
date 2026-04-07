@@ -30,13 +30,6 @@ new class extends Component {
     public $linkedin = '';
     public $twitter = '';
 
-    // Skills & Languages
-    public $skills = [];
-    public $languages = [];
-    public $newSkill = '';
-    public $newLanguage = '';
-    public $newLanguageLevel = 'Basic';
-
     // About Me
     public $about_me = '';
     public $headline = '';
@@ -70,8 +63,6 @@ new class extends Component {
             $this->github = $profile->github ?? '';
             $this->linkedin = $profile->linkedin ?? '';
             $this->twitter = $profile->twitter ?? '';
-            $this->skills = $profile->skills ?? [];
-            $this->languages = $profile->languages ?? [];
             // $this->resume_url = $profile->resume_url ?? '';
             $this->about_me = $profile->about_me ?? '';
             $this->headline = $profile->headline ?? '';
@@ -84,34 +75,6 @@ new class extends Component {
     public function setActiveTab($tab)
     {
         $this->activeTab = $tab;
-    }
-
-    public function addSkill()
-    {
-        if (!empty($this->newSkill)) {
-            $this->skills[] = $this->newSkill;
-            $this->newSkill = '';
-        }
-    }
-
-    public function removeSkill($index)
-    {
-        unset($this->skills[$index]);
-        $this->skills = array_values($this->skills);
-    }
-
-    public function addLanguage()
-    {
-        if (!empty($this->newLanguage)) {
-            $this->languages[$this->newLanguage] = $this->newLanguageLevel;
-            $this->newLanguage = '';
-            $this->newLanguageLevel = 'Basic';
-        }
-    }
-
-    public function removeLanguage($language)
-    {
-        unset($this->languages[$language]);
     }
 
     public function save()
@@ -139,8 +102,6 @@ new class extends Component {
             'github' => $this->github,
             'linkedin' => $this->linkedin,
             'twitter' => $this->twitter,
-            //            'skills' => $this->skills,
-            'languages' => $this->languages,
             'about_me' => $this->about_me,
             'headline' => $this->headline,
             'years_experience' => $this->years_experience,
@@ -210,15 +171,6 @@ new class extends Component {
                                     d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" />
                             </svg>
                             Social Links
-                        </button>
-
-                        <button wire:click="setActiveTab('skills')"
-                            class="w-full flex items-center px-4 py-3 text-sm font-medium rounded-lg transition-colors {{ $activeTab === 'skills' ? 'bg-blue-50 text-blue-700' : 'text-gray-700 hover:bg-gray-50' }}">
-                            <svg class="mr-3 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
-                            </svg>
-                            Skills & Languages
                         </button>
                     </nav>
                 </div>
@@ -489,49 +441,7 @@ new class extends Component {
                                 </div>
                             @endif
 
-                            <!-- Skills & Languages Tab -->
-                            @if ($activeTab === 'skills')
-                                <div>
-                                    <h2 class="text-xl font-semibold text-gray-900 mb-6">Skills & Languages</h2>
-
-                                    <div class="space-y-8">
-                                        <!-- Skills Section -->
-                                        <div>
-                                            <h3 class="text-lg font-medium text-gray-900 mb-4">Skills</h3>
-                                            <div class="flex gap-2 mb-3">
-                                                <input type="text" wire:model="newSkill"
-                                                    placeholder="Add a skill..." wire:keydown.enter.prevent="addSkill"
-                                                    class="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
-                                                <button type="button" wire:click="addSkill"
-                                                    class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
-                                                    Add
-                                                </button>
-                                            </div>
-                                            <div class="flex flex-wrap gap-2">
-                                                @foreach ($skills as $index => $skill)
-                                                    <span
-                                                        class="inline-flex items-center gap-2 px-3 py-1 bg-blue-50 text-blue-700 rounded-full text-sm">
-                                                        {{ $skill }}
-                                                        <button type="button"
-                                                            wire:click="removeSkill({{ $index }})"
-                                                            class="text-blue-500 hover:text-blue-700">
-                                                            <svg class="w-4 h-4" fill="currentColor"
-                                                                viewBox="0 0 20 20">
-                                                                <path fill-rule="evenodd"
-                                                                    d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-                                                                    clip-rule="evenodd" />
-                                                            </svg>
-                                                        </button>
-                                            </div>
-                            @endforeach
                         </div>
-
-                </div>
-            </div>
-        </div>
-        @endif
-
-    </div>
 
     <!-- Footer with Save Button -->
     <div
@@ -547,38 +457,3 @@ new class extends Component {
 </div>
 </div>
 </div>
-
-
-<!-- Languages Section -->
-<div>
-    <h3 class="text-lg font-medium text-gray-900 mb-4">Languages</h3>
-    <div class="flex gap-2 mb-3">
-        <input type="text" wire:model="newLanguage" placeholder="Language name..."
-            class="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
-        <select wire:model="newLanguageLevel"
-            class="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
-            <option value="Basic">Basic</option>
-            <option value="Intermediate">Intermediate</option>
-            <option value="Advanced">Advanced</option>
-            <option value="Native">Native</option>
-        </select>
-        <button type="button" wire:click="addLanguage"
-            class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
-            Add
-        </button>
-    </div>
-</div>
-@if (!empty($languages))
-
-    @foreach ($languages as $language => $level)
-        <div class="flex items-center gap-4 mb-2">
-            <span class="font-medium">{{ $language }}</span>
-            <span class="text-sm text-gray-600">({{ $level }})</span>
-
-            <button type="button" wire:click="removeLanguage('{{ $language }}')"
-                class="text-red-600 hover:text-red-800 text-sm">
-                Remove
-            </button>
-        </div>
-    @endforeach
-@endif

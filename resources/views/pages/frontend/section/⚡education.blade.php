@@ -2,42 +2,81 @@
 
 use Livewire\Component;
 use Illuminate\Database\Eloquent\Collection;
+use App\Models\Experience;
 
 new class extends Component {
-    public Collection $educations;
+    public Collection $experiences;
 
     public function mount(): void
     {
-        $this->educations = \App\Models\Education::all();
+        $this->experiences = Experience::all();
+
+        $this->colors = [
+            '#06B6D4', // cyan
+            '#F59E0B', // amber
+            '#8B5CF6', // violet
+            '#10B981', // green
+            '#EF4444', // red
+        ];
     }
 };
 ?>
 
-<div>
-    <h3 class="text-2xl font-bold text-gray-900 mb-8 flex items-center">
-        <svg class="w-6 h-6 text-primary mr-2" fill="none" stroke="currentColor"
-             viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                  d="M12 14l9-5-9-5-9 5 9 5z"></path>
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                  d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z">
-            </path>
-        </svg>
-        Education
-    </h3>
-    <div class="border-l-2 border-primary/20 ml-3 space-y-12">
-      @forelse($educations as $education)
-            <div class="relative pl-8">
-                            <span
-                                class="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-primary ring-4 ring-primaryLight"></span>
-                <span class="text-sm text-primary font-bold bg-primaryLight/50 px-3 py-1 rounded-full">{{$education->start_year}}
-                                - {{$education->end_year}}</span>
-                <h4 class="text-xl font-bold text-gray-900 mt-2">{{$education->degree}}</h4>
-                <span class="text-gray-500 text-sm">{{$education->institution}}</span>
-                <p class="text-gray-600 mt-2">{{$education->description}}</p>
-            </div>
 
-        @empty
-        @endforelse
+<!-- ── LEFT: EXPERIENCE ── -->
+<div>
+    <div class="flex items-center gap-3 mb-8">
+        <div class="w-9 h-9 bg-primary rounded-xl flex items-center justify-center text-white text-lg">
+            💼</div>
+        <h3 class="text-xl font-bold text-dark">Experience</h3>
+    </div>
+    <div class="relative">
+        <div class="absolute left-[6px] top-2 bottom-2 w-0.5 bg-gradient-to-b from-primary via-accent to-indigo-200">
+        </div>
+        <div class="space-y-7">
+            @foreach ($experiences as $index => $experience)
+                @php
+                    $color = $this->colors[$index % count($this->colors)];
+                @endphp
+
+                <div class="flex gap-5 items-start">
+
+                    <div class="timeline-dot shrink-0 mt-1"
+                        style="background:{{ $color }}; box-shadow:0 0 0 3px {{ $color }}">
+                    </div>
+
+                    <div class="bg-white rounded-2xl p-5 shadow-sm border border-gray-100 flex-1 card-hover">
+
+                        <div class="flex items-start justify-between gap-2 mb-1">
+                            <h4 class="font-bold text-dark text-sm">
+                                {{ $experience->position }}
+                            </h4>
+
+                            @if (is_null($experience->end_year))
+                                <span class="text-xs text-white px-2 py-0.5 rounded-full shrink-0"
+                                    style="background:{{ $color }}">
+                                    Current
+                                </span>
+                            @endif
+                        </div>
+
+                        <p class="text-sm font-medium mb-1" style="color:{{ $color }}">
+                            {{ $experience->company }}
+                        </p>
+
+                        <p class="text-xs text-gray-400 mb-2">
+                            📅 {{ $experience->start_year }} - {{ $experience->end_year ?? 'Present' }} · Kathmandu
+                        </p>
+
+                        <p class="text-xs text-gray-500 leading-relaxed">
+                            {{ $experience->description }}
+                        </p>
+
+                    </div>
+                </div>
+            @endforeach
+
+
+        </div>
     </div>
 </div>

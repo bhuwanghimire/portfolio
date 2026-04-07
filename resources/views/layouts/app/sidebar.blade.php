@@ -52,6 +52,21 @@
                     {{ __('Personal Interests') }}
                 </flux:sidebar.item>
 
+                <flux:sidebar.item icon="folder-open" :href="route('projects')"
+                    :current="request()->routeIs('projects')" wire:navigate>
+                    {{ __('Projects') }}
+                </flux:sidebar.item>
+
+                <flux:sidebar.item icon="chat-bubble-bottom-center-text" :href="route('testimonials')"
+                    :current="request()->routeIs('testimonials')" wire:navigate>
+                    {{ __('Testimonials') }}
+                </flux:sidebar.item>
+
+                <flux:sidebar.item icon="envelope" :href="route('contact-messages')"
+                    :current="request()->routeIs('contact-messages')" wire:navigate>
+                    {{ __('Messages') }}
+                </flux:sidebar.item>
+
             </flux:sidebar.group>
 
         </flux:sidebar.nav>

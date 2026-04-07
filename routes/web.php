@@ -19,6 +19,9 @@ Route::livewire('/experience/', 'pages::backend.experience.create-experience')->
 Route::livewire('/services/', 'pages::backend.service.create-service')->name('services');
 Route::livewire('/technical-skills/', 'pages::backend.technical-skill.create-technical-skill')->name('technical-skills');
 Route::livewire('/personal-interests/', 'pages::backend.personal-interest.create-personal-interest')->name('personal-interests');
+Route::livewire('/projects/', 'pages::backend.project.create-project')->name('projects');
+Route::livewire('/testimonials/', 'pages::backend.testimonial.create-testimonial')->name('testimonials');
+Route::livewire('/contact-messages/', 'pages::backend.contact.contact-messages')->name('contact-messages');
 
 // frontend routes
 Route::livewire('/', 'pages::frontend.home.home-page')->name('home');

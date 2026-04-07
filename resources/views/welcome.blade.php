@@ -1,159 +1,203 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Alex Dev | Personal Portfolio</title>
-    <!-- Tailwind CSS via CDN -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bhuwan | Full Stack Developer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" />
+
     @vite(['resources/js/frontend/main.js', 'resources/js/frontend/main.css'])
 
-    <script src="https://kit.fontawesome.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif']
+                    },
+                    colors: {
+                        primary: '#4F46E5',
+                        accent: '#06B6D4',
+                        dark: '#0F172A',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
 
+        .gradient-text {
+            background: linear-gradient(135deg, #4F46E5, #06B6D4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
 
+        .card-hover {
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .card-hover:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 28px rgba(79, 70, 229, 0.15);
+        }
+
+        .nav-link {
+            position: relative;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #4F46E5, #06B6D4);
+            transition: width 0.3s;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .timeline-dot {
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: #4F46E5;
+            border: 3px solid white;
+            box-shadow: 0 0 0 3px #4F46E5;
+        }
+
+        .skill-badge {
+            transition: all 0.2s;
+        }
+
+        .skill-badge:hover {
+            transform: scale(1.05);
+        }
+
+        .hero-blob {
+            position: absolute;
+            border-radius: 9999px;
+            filter: blur(80px);
+            opacity: 0.15;
+        }
+
+        .section-tag {
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: #4F46E5;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .float-anim {
+            animation: float 4s ease-in-out infinite;
+        }
+    </style>
 </head>
 
-<body class="bg-gray-50 text-gray-600 antialiased">
+<body class="bg-white text-gray-800 antialiased">
 
-    <!-- Navigation -->
-    <nav class="fixed w-full z-50 bg-white/90 backdrop-blur-md shadow-sm transition-all duration-300">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-20">
-                <!-- Logo -->
-                <div class="flex-shrink-0 flex items-center">
-                    <a href="{{ route('home') }}" class="text-2xl font-bold text-gray-900">
-                        Alex<span class="text-primary">.</span>
-                    </a>
-                </div>
-
-                <!-- Desktop Menu -->
-                <div class="hidden md:flex space-x-8">
-                    <a href="#about" class="text-gray-900 hover:text-primary font-medium transition">About</a>
-                    <a href="#services" class="text-gray-900 hover:text-primary font-medium transition">Services</a>
-                    <a href="#portfolio" class="text-gray-900 hover:text-primary font-medium transition">Portfolio</a>
-                    <a href="#blog" class="text-gray-900 hover:text-primary font-medium transition">Blog</a>
-                    <a href="#contact"
-                        class="px-5 py-2 bg-primary text-white rounded-full font-medium hover:bg-primaryDark transition shadow-md hover:shadow-lg">Contact
-                        Me</a>
-                </div>
-
-                <!-- Mobile Menu Button -->
-                <div class="md:hidden flex items-center">
-                    <button id="mobile-menu-btn" class="text-gray-900 hover:text-primary focus:outline-none">
-                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M4 6h16M4 12h16M4 18h16" />
-                        </svg>
-                    </button>
-                </div>
-            </div>
+    <!-- ========= NAVBAR ========= -->
+    <header class="sticky top-0 z-50 bg-white/80 backdrop-blur border-b border-gray-100 shadow-sm">
+        <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+            <a href="#" class="text-xl font-bold gradient-text tracking-tight">bhuwan.dev</a>
+            <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-gray-600">
+                <a href="#about" class="nav-link hover:text-primary transition-colors">About</a>
+                <a href="#skills" class="nav-link hover:text-primary transition-colors">Skills</a>
+                <a href="#projects" class="nav-link hover:text-primary transition-colors">Projects</a>
+                <a href="#timeline" class="nav-link hover:text-primary transition-colors">Journey</a>
+                <a href="#contact" class="nav-link hover:text-primary transition-colors">Contact</a>
+            </nav>
+            <a href="#contact"
+                class="bg-primary text-white text-sm font-medium px-5 py-2 rounded-full hover:bg-indigo-700 transition-colors shadow-md shadow-indigo-200">
+                Hire Me
+            </a>
         </div>
-
-        <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100">
-            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-                <a href="#about"
-                    class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-primary hover:bg-gray-50 rounded-md">About</a>
-                <a href="#services"
-                    class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-primary hover:bg-gray-50 rounded-md">Services</a>
-                <a href="#portfolio"
-                    class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-primary hover:bg-gray-50 rounded-md">Portfolio</a>
-                <a href="#blog"
-                    class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-primary hover:bg-gray-50 rounded-md">Blog</a>
-                <a href="#contact" class="block px-3 py-2 text-base font-medium text-primary font-bold">Contact Me</a>
-            </div>
-        </div>
-    </nav>
+    </header>
 
     {{ $slot }}
 
-
-    <!-- Footer -->
-    <footer class="bg-white border-t border-gray-100 py-8">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <p class="text-gray-500">
-                &copy; 2024 <span class="text-primary font-bold">Alex.</span> All rights reserved.
-            </p>
+    <!-- ========= FOOTER ========= -->
+    <footer class="bg-dark text-gray-400 py-12">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-6 mb-8">
+                <span class="text-2xl font-bold gradient-text">bhuwan.dev</span>
+                <nav class="flex flex-wrap items-center gap-6 text-sm">
+                    <a href="#about" class="hover:text-white transition-colors">About</a>
+                    <a href="#skills" class="hover:text-white transition-colors">Skills</a>
+                    <a href="#projects" class="hover:text-white transition-colors">Projects</a>
+                    <a href="#timeline" class="hover:text-white transition-colors">Journey</a>
+                    <a href="#contact" class="hover:text-white transition-colors">Contact</a>
+                </nav>
+                <div class="flex gap-3">
+                    <a href="#"
+                        class="w-9 h-9 rounded-full bg-white/10 hover:bg-primary flex items-center justify-center transition-all text-sm">in</a>
+                    <a href="#"
+                        class="w-9 h-9 rounded-full bg-white/10 hover:bg-primary flex items-center justify-center transition-all text-sm">gh</a>
+                    <a href="#"
+                        class="w-9 h-9 rounded-full bg-white/10 hover:bg-primary flex items-center justify-center transition-all text-sm">tw</a>
+                </div>
+            </div>
+            <div
+                class="border-t border-white/10 pt-6 flex flex-col md:flex-row items-center justify-between text-xs gap-2">
+                <span>© 2024 Bhuwan ghimire. All rights reserved.</span>
+                <span>Crafted with ❤️ using HTML & Tailwind CSS</span>
+            </div>
         </div>
     </footer>
 
-    <!-- Scripts (Vanilla JS) -->
     <script>
-        // --- Mobile Menu Logic ---
-        const btn = document.getElementById('mobile-menu-btn');
-        const menu = document.getElementById('mobile-menu');
-
-        btn.addEventListener('click', () => {
-            menu.classList.toggle('hidden');
-        });
-
-        // --- Testimonial Slider Logic (Updated for 2 Slides Per View) ---
-        const track = document.getElementById('testimonial-track');
-        const prevBtn = document.getElementById('prevBtn');
-        const nextBtn = document.getElementById('nextBtn');
-
-        let currentIndex = 0;
-
-        function getSlidesPerView() {
-            // Tailwind MD breakpoint is 768px.
-            // If screen >= 768px, we show 2 slides. Else 1.
-            return window.innerWidth >= 768 ? 2 : 1;
-        }
-
-        function updateSlider() {
-            const slidesPerView = getSlidesPerView();
-            const slideWidth = 100 / slidesPerView;
-            track.style.transform = `translateX(-${currentIndex * slideWidth}%)`;
-
-            // Manage Button states
-            const totalSlides = track.children.length;
-
-            // Disable Previous if at start
-            if (currentIndex === 0) {
-                prevBtn.classList.add('opacity-50', 'cursor-not-allowed');
-            } else {
-                prevBtn.classList.remove('opacity-50', 'cursor-not-allowed');
-            }
-
-            // Disable Next if at end
-            // The logic: If we have 4 slides and show 2.
-            // Index 0: Shows 1,2.
-            // Index 1: Shows 2,3.
-            // Index 2: Shows 3,4. (End)
-            // So max index is totalSlides - slidesPerView
-            if (currentIndex >= totalSlides - slidesPerView) {
-                nextBtn.classList.add('opacity-50', 'cursor-not-allowed');
-            } else {
-                nextBtn.classList.remove('opacity-50', 'cursor-not-allowed');
-            }
-        }
-
-        nextBtn.addEventListener('click', () => {
-            const slidesPerView = getSlidesPerView();
-            const totalSlides = track.children.length;
-
-            if (currentIndex < totalSlides - slidesPerView) {
-                currentIndex++;
-                updateSlider();
-            }
-        });
-
-        prevBtn.addEventListener('click', () => {
-            if (currentIndex > 0) {
-                currentIndex--;
-                updateSlider();
-            }
-        });
-
-        // Update on resize to handle switching between 1 and 2 column view
-        window.addEventListener('resize', () => {
-            // Reset to 0 to avoid layout glitches during resize
-            currentIndex = 0;
-            updateSlider();
-        });
-
-        // Initialize
-        updateSlider();
+        // // Smooth scroll
+        // document.querySelectorAll('a[href^="#"]').forEach(a => {
+        //     a.addEventListener('click', e => {
+        //         e.preventDefault();
+        //         const t = document.querySelector(a.getAttribute('href'));
+        //         if (t) t.scrollIntoView({
+        //             behavior: 'smooth',
+        //             block: 'start'
+        //         });
+        //     });
+        // });
+        // // Fade-in on scroll
+        // const io = new IntersectionObserver(entries => {
+        //     entries.forEach(el => {
+        //         if (el.isIntersecting) {
+        //             el.target.style.opacity = 1;
+        //             el.target.style.transform = 'translateY(0)';
+        //         }
+        //     });
+        // }, {
+        //     threshold: 0.1
+        // });
+        // document.querySelectorAll('section').forEach(s => {
+        //     s.style.opacity = 0;
+        //     s.style.transform = 'translateY(20px)';
+        //     s.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        //     io.observe(s);
+        // });
     </script>
 </body>
 
