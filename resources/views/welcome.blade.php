@@ -5,117 +5,13 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Bhuwan | Full Stack Developer</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
-        rel="stylesheet" />
-    <script src="https://cdn.tailwindcss.com"></script>
+
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" />
 
     @vite(['resources/js/frontend/main.js', 'resources/js/frontend/main.css'])
 
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif']
-                    },
-                    colors: {
-                        primary: '#4F46E5',
-                        accent: '#06B6D4',
-                        dark: '#0F172A',
-                    }
-                }
-            }
-        }
-    </script>
-    <style>
-        body {
-            font-family: 'Inter', sans-serif;
-        }
 
-        .gradient-text {
-            background: linear-gradient(135deg, #4F46E5, #06B6D4);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .card-hover {
-            transition: transform 0.2s, box-shadow 0.2s;
-        }
-
-        .card-hover:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 12px 28px rgba(79, 70, 229, 0.15);
-        }
-
-        .nav-link {
-            position: relative;
-        }
-
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            bottom: -2px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: linear-gradient(90deg, #4F46E5, #06B6D4);
-            transition: width 0.3s;
-        }
-
-        .nav-link:hover::after {
-            width: 100%;
-        }
-
-        .timeline-dot {
-            width: 14px;
-            height: 14px;
-            border-radius: 50%;
-            background: #4F46E5;
-            border: 3px solid white;
-            box-shadow: 0 0 0 3px #4F46E5;
-        }
-
-        .skill-badge {
-            transition: all 0.2s;
-        }
-
-        .skill-badge:hover {
-            transform: scale(1.05);
-        }
-
-        .hero-blob {
-            position: absolute;
-            border-radius: 9999px;
-            filter: blur(80px);
-            opacity: 0.15;
-        }
-
-        .section-tag {
-            font-size: 12px;
-            font-weight: 600;
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-            color: #4F46E5;
-        }
-
-        @keyframes float {
-
-            0%,
-            100% {
-                transform: translateY(0);
-            }
-
-            50% {
-                transform: translateY(-10px);
-            }
-        }
-
-        .float-anim {
-            animation: float 4s ease-in-out infinite;
-        }
-    </style>
 </head>
 
 <body class="bg-white text-gray-800 antialiased">

@@ -74,7 +74,7 @@ new #[Layout('welcome')] class extends Component {
                     <span class="gradient-text">{{ explode(' ', $profile->name)[1] }}</span>
                 </h1>
                 <p class="text-lg text-gray-500 leading-relaxed mb-8 max-w-lg">
-                    <strong class="text-gray-700">{{ $profile->bio }}
+                    {{ $profile->bio }}
                 </p>
                 <div class="flex flex-wrap gap-4">
                     <a href="#projects"

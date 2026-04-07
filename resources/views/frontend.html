@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Bhuwan | Full Stack Developer</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { sans: ['Inter', 'sans-serif'] },
+          colors: {
+            primary: '#4F46E5',
+            accent: '#06B6D4',
+            dark: '#0F172A',
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    .gradient-text {
+      background: linear-gradient(135deg, #4F46E5, #06B6D4);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .card-hover { transition: transform 0.2s, box-shadow 0.2s; }
+    .card-hover:hover { transform: translateY(-4px); box-shadow: 0 12px 28px rgba(79,70,229,0.15); }
+    .nav-link { position: relative; }
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -2px; left: 0;
+      width: 0; height: 2px;
+      background: linear-gradient(90deg, #4F46E5, #06B6D4);
+      transition: width 0.3s;
+    }
+    .nav-link:hover::after { width: 100%; }
+    .timeline-dot { width: 14px; height: 14px; border-radius: 50%; background: #4F46E5; border: 3px solid white; box-shadow: 0 0 0 3px #4F46E5; }
+    .skill-badge { transition: all 0.2s; }
+    .skill-badge:hover { transform: scale(1.05); }
+    .hero-blob {
+      position: absolute;
+      border-radius: 9999px;
+      filter: blur(80px);
+      opacity: 0.15;
+    }
+    .section-tag {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #4F46E5;
+    }
+    @keyframes float {
+      0%,100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+    .float-anim { animation: float 4s ease-in-out infinite; }
+  </style>
+</head>
+<body class="bg-white text-gray-800 antialiased">
+
+  <!-- ========= NAVBAR ========= -->
+  <header class="sticky top-0 z-50 bg-white/80 backdrop-blur border-b border-gray-100 shadow-sm">
+    <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+      <a href="#" class="text-xl font-bold gradient-text tracking-tight">bhuwan.dev</a>
+      <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-gray-600">
+        <a href="#about"    class="nav-link hover:text-primary transition-colors">About</a>
+        <a href="#skills"   class="nav-link hover:text-primary transition-colors">Skills</a>
+        <a href="#projects" class="nav-link hover:text-primary transition-colors">Projects</a>
+        <a href="#timeline" class="nav-link hover:text-primary transition-colors">Journey</a>
+        <a href="#contact"  class="nav-link hover:text-primary transition-colors">Contact</a>
+      </nav>
+      <a href="#contact" class="bg-primary text-white text-sm font-medium px-5 py-2 rounded-full hover:bg-indigo-700 transition-colors shadow-md shadow-indigo-200">
+        Hire Me
+      </a>
+    </div>
+  </header>
+
+  <!-- ========= HERO ========= -->
+  <section class="relative overflow-hidden bg-white min-h-screen flex items-center">
+    <div class="hero-blob w-96 h-96 bg-indigo-400 top-10 -left-20"></div>
+    <div class="hero-blob w-80 h-80 bg-cyan-400 bottom-10 right-0"></div>
+    <div class="max-w-6xl mx-auto px-6 py-24 grid grid-cols-1 md:grid-cols-2 gap-16 items-center relative z-10">
+      <div>
+        <span class="section-tag mb-4 inline-block">👋 Hello, I'm</span>
+        <h1 class="text-5xl md:text-6xl font-extrabold text-dark leading-tight mb-4">
+          Bhuwan<br/>
+          <span class="gradient-text">Karki</span>
+        </h1>
+        <p class="text-lg text-gray-500 leading-relaxed mb-8 max-w-lg">
+          A passionate <strong class="text-gray-700">Full Stack Developer</strong> crafting beautiful, performant web experiences. I turn ideas into elegant digital products.
+        </p>
+        <div class="flex flex-wrap gap-4">
+          <a href="#projects" class="bg-primary text-white font-semibold px-7 py-3 rounded-full hover:bg-indigo-700 transition-all shadow-lg shadow-indigo-200">
+            View My Work
+          </a>
+          <a href="#contact" class="border-2 border-primary text-primary font-semibold px-7 py-3 rounded-full hover:bg-indigo-50 transition-all">
+            Get In Touch
+          </a>
+        </div>
+        <div class="mt-10 flex items-center gap-6">
+          <div class="text-center">
+            <div class="text-2xl font-bold text-dark">3+</div>
+            <div class="text-xs text-gray-400 mt-0.5">Years Exp.</div>
+          </div>
+          <div class="w-px h-10 bg-gray-200"></div>
+          <div class="text-center">
+            <div class="text-2xl font-bold text-dark">25+</div>
+            <div class="text-xs text-gray-400 mt-0.5">Projects</div>
+          </div>
+          <div class="w-px h-10 bg-gray-200"></div>
+          <div class="text-center">
+            <div class="text-2xl font-bold text-dark">10+</div>
+            <div class="text-xs text-gray-400 mt-0.5">Clients</div>
+          </div>
+        </div>
+      </div>
+      <!-- Avatar / Illustration -->
+      <div class="flex justify-center">
+        <div class="float-anim relative">
+          <div class="w-72 h-72 rounded-full bg-gradient-to-br from-indigo-100 to-cyan-100 flex items-center justify-center shadow-2xl shadow-indigo-100">
+            <div class="w-64 h-64 rounded-full overflow-hidden border-4 border-white shadow-xl">
+              <img src="https://api.dicebear.com/9.x/adventurer/svg?seed=bhuwan&backgroundColor=b6e3f4" alt="Bhuwan" class="w-full h-full object-cover bg-indigo-50"/>
+            </div>
+          </div>
+          <!-- floating badges -->
+          <div class="absolute -top-4 -right-4 bg-white rounded-xl shadow-lg px-3 py-2 flex items-center gap-2 text-sm font-medium">
+            <span class="text-green-500">●</span> Available for hire
+          </div>
+          <div class="absolute -bottom-4 -left-4 bg-white rounded-xl shadow-lg px-3 py-2 flex items-center gap-2 text-sm font-medium">
+            <span>💻</span> Full Stack Dev
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Scroll indicator -->
+    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 text-gray-400 text-xs animate-bounce">
+      <span>Scroll</span>
+      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+  </section>
+
+  <!-- ========= ABOUT ========= -->
+  <section class="bg-gray-50 py-24" id="about">
+    <div class="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+      <div class="relative flex justify-center">
+        <!-- Decorative ring -->
+        <div class="absolute inset-0 flex items-center justify-center">
+          <div class="w-80 h-80 rounded-3xl bg-gradient-to-br from-indigo-100 to-cyan-100 rotate-3"></div>
+        </div>
+        <!-- Main image -->
+        <div class="relative z-10">
+          <img src="https://picsum.photos/seed/coding1/480/520" alt="Bhuwan working"
+            class="w-72 h-80 object-cover rounded-3xl shadow-2xl shadow-indigo-200 -rotate-1"/>
+        </div>
+        <!-- Floating experience badge -->
+        <div class="absolute bottom-4 -right-2 z-20 bg-primary text-white rounded-2xl px-5 py-4 shadow-xl">
+          <div class="text-3xl font-bold leading-none">3+</div>
+          <div class="text-xs text-indigo-200 mt-1">Years Experience</div>
+        </div>
+        <!-- Floating availability badge -->
+        <div class="absolute -top-4 -left-2 z-20 bg-white rounded-xl px-4 py-2.5 shadow-lg flex items-center gap-2">
+          <span class="text-green-500 text-sm">●</span>
+          <span class="text-xs font-semibold text-gray-700">Available for work</span>
+        </div>
+      </div>
+      <div>
+        <span class="section-tag">About Me</span>
+        <h2 class="text-4xl font-bold text-dark mt-2 mb-5 leading-tight">
+          Passionate developer who loves<br/>building things for the web
+        </h2>
+        <p class="text-gray-500 leading-relaxed mb-4">
+          Hi! I'm Bhuwan, a full-stack developer based in Kathmandu, Nepal. I specialize in building scalable web applications using modern technologies like React, Node.js, and Python.
+        </p>
+        <p class="text-gray-500 leading-relaxed mb-8">
+          When I'm not writing code, you'll find me exploring new tech, contributing to open source, or hiking in the beautiful Himalayan trails.
+        </p>
+        <div class="grid grid-cols-2 gap-4 mb-8">
+          <div class="bg-white rounded-xl p-4 shadow-sm border border-gray-100">
+            <div class="text-primary mb-1">📍</div>
+            <div class="text-xs text-gray-400">Location</div>
+            <div class="font-semibold text-gray-700 text-sm">Kathmandu, Nepal</div>
+          </div>
+          <div class="bg-white rounded-xl p-4 shadow-sm border border-gray-100">
+            <div class="text-primary mb-1">🎓</div>
+            <div class="text-xs text-gray-400">Education</div>
+            <div class="font-semibold text-gray-700 text-sm">BSc. Computer Science</div>
+          </div>
+          <div class="bg-white rounded-xl p-4 shadow-sm border border-gray-100">
+            <div class="text-primary mb-1">💼</div>
+            <div class="text-xs text-gray-400">Employment</div>
+            <div class="font-semibold text-gray-700 text-sm">Open to Opportunities</div>
+          </div>
+          <div class="bg-white rounded-xl p-4 shadow-sm border border-gray-100">
+            <div class="text-primary mb-1">🌐</div>
+            <div class="text-xs text-gray-400">Languages</div>
+            <div class="font-semibold text-gray-700 text-sm">Nepali, English, Hindi</div>
+          </div>
+        </div>
+        <a href="#" class="inline-flex items-center gap-2 bg-primary text-white font-semibold px-6 py-3 rounded-full hover:bg-indigo-700 transition-all shadow-lg shadow-indigo-200">
+          Download Resume
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========= SKILLS ========= -->
+  <section class="bg-white py-24" id="skills">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="text-center mb-14">
+        <span class="section-tag">What I know</span>
+        <h2 class="text-4xl font-bold text-dark mt-2 mb-3">My Skills & Tech Stack</h2>
+        <p class="text-gray-500 max-w-md mx-auto">These are the technologies and tools I use to bring projects to life.</p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <!-- Frontend -->
+        <div class="bg-gradient-to-br from-indigo-50 to-white rounded-2xl p-6 border border-indigo-100 card-hover">
+          <div class="w-10 h-10 bg-indigo-100 rounded-xl flex items-center justify-center mb-4 text-xl">🎨</div>
+          <h3 class="font-bold text-dark mb-4">Frontend</h3>
+          <div class="flex flex-wrap gap-2">
+            <span class="skill-badge bg-white border border-indigo-100 text-indigo-700 text-xs font-medium px-3 py-1.5 rounded-full shadow-sm">React.js</span>
+            <span class="skill-badge bg-white border border-indigo-100 text-indigo-700 text-xs font-medium px-3 py-1.5 rounded-full shadow-sm">Next.js</span>
+            <span class="skill-badge bg-white border border-indigo-100 text-indigo-700 text-xs font-medium px-3 py-1.5 rounded-full shadow-sm">TypeScript</span>
+            <span class="skill-badge bg-white border border-indigo-100 text-indigo-700 text-xs font-medium px-3 py-1.5 rounded-full shadow-sm">Tailwind CSS</span>
+            <span class="skill-badge bg-white border border-indigo-100 text-indigo-700 text-xs font-medium px-3 py-1.5 rounded-full shadow-sm">HTML/CSS</span>
+            <span class="skill-badge bg-white border border-indigo-100 text-indigo-700 text-xs font-medium px-3 py-1.5 rounded-full shadow-sm">Vue.js</span>
+          </div>
+        </div>
+        <!-- Backend -->
+        <div class="bg-gradient-to-br from-cyan-50 to-white rounded-2xl p-6 border border-cyan-100 card-hover">
+          <div class="w-10 h-10 bg-cyan-100 rounded-xl flex items-center justify-center mb-4 text-xl">⚙️</div>
+          <h3 class="font-bold text-dark mb-4">Backend</h3>
+          <div class="flex flex-wrap gap-2">
+            <span class="skill-badge bg-white border border-cyan-100 text-cyan-700 text-xs font-medium px-3 py-1.5 rounded-full shadow-sm">Node.js</span>
+            <span class="skill-badge bg-white border border-cyan-100 text-cyan-700 text-xs font-medium px-3 py-1.5 rounded-full shadow-sm">Express.js</span>
+            <span class="skill-badge bg-white border border-cyan-100 text-cyan-700 text-xs font-medium px-3 py-1.5 rounded-full shadow-sm">Python</span>
+            <span class="skill-badge bg-white border border-cyan-100 text-cyan-700 text-xs font-medium px-3 py-1.5 rounded-full shadow-sm">Django</span>
+            <span class="skill-badge bg-white border border-cyan-100 text-cyan-700 text-xs font-medium px-3 py-1.5 rounded-full shadow-sm">REST API</span>
+            <span class="skill-badge bg-white border border-cyan-100 text-cyan-700 text-xs font-medium px-3 py-1.5 rounded-full shadow-sm">GraphQL</span>
+          </div>
+        </div>
+        <!-- Tools -->
+        <div class="bg-gradient-to-br from-violet-50 to-white rounded-2xl p-6 border border-violet-100 card-hover">
+          <div class="w-10 h-10 bg-violet-100 rounded-xl flex items-center justify-center mb-4 text-xl">🛠️</div>
+          <h3 class="font-bold text-dark mb-4">Tools & Cloud</h3>
+          <div class="flex flex-wrap gap-2">
+            <span class="skill-badge bg-white border border-violet-100 text-violet-700 text-xs font-medium px-3 py-1.5 rounded-full shadow-sm">Git / GitHub</span>
+            <span class="skill-badge bg-white border border-violet-100 text-violet-700 text-xs font-medium px-3 py-1.5 rounded-full shadow-sm">Docker</span>
+            <span class="skill-badge bg-white border border-violet-100 text-violet-700 text-xs font-medium px-3 py-1.5 rounded-full shadow-sm">AWS</span>
+            <span class="skill-badge bg-white border border-violet-100 text-violet-700 text-xs font-medium px-3 py-1.5 rounded-full shadow-sm">PostgreSQL</span>
+            <span class="skill-badge bg-white border border-violet-100 text-violet-700 text-xs font-medium px-3 py-1.5 rounded-full shadow-sm">MongoDB</span>
+            <span class="skill-badge bg-white border border-violet-100 text-violet-700 text-xs font-medium px-3 py-1.5 rounded-full shadow-sm">Linux</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========= PROJECTS ========= -->
+  <section class="bg-gray-50 py-24" id="projects">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="text-center mb-14">
+        <span class="section-tag">My Work</span>
+        <h2 class="text-4xl font-bold text-dark mt-2 mb-3">Featured Projects</h2>
+        <p class="text-gray-500 max-w-md mx-auto">A selection of projects I've built with passion and attention to detail.</p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+        <!-- Project 1 (featured) -->
+        <div class="md:col-span-2 bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100 card-hover group cursor-pointer" onclick="location.href='project-detail.html?project=ecommerce'">
+          <div class="h-52 overflow-hidden relative">
+            <img src="https://picsum.photos/seed/proj1/700/300" alt="E-Commerce" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"/>
+            <div class="absolute top-3 left-3 bg-primary text-white text-xs font-semibold px-3 py-1 rounded-full">Featured</div>
+          </div>
+          <div class="p-6">
+            <div class="flex items-center gap-2 mb-2">
+              <span class="text-xs text-gray-400">React · Node.js · MongoDB</span>
+            </div>
+            <h3 class="text-lg font-bold text-dark mb-2">E-Commerce Platform</h3>
+            <p class="text-sm text-gray-500 leading-relaxed mb-4">A full-featured online shopping platform with real-time inventory, payment gateway integration, and admin dashboard.</p>
+            <div class="flex gap-3">
+              <a href="project-detail.html?project=ecommerce" class="text-primary text-sm font-semibold hover:underline flex items-center gap-1">View Details ↗</a>
+              <a href="#" class="text-gray-400 text-sm font-semibold hover:underline flex items-center gap-1">GitHub ↗</a>
+            </div>
+          </div>
+        </div>
+        <!-- Project 2 -->
+        <div class="bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100 card-hover group cursor-pointer" onclick="location.href='project-detail.html?project=taskmanager'">
+          <div class="h-52 overflow-hidden">
+            <img src="https://picsum.photos/seed/proj2/400/300" alt="Task App" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"/>
+          </div>
+          <div class="p-5">
+            <div class="text-xs text-gray-400 mb-1">Next.js · Tailwind</div>
+            <h3 class="text-base font-bold text-dark mb-2">Task Manager App</h3>
+            <p class="text-sm text-gray-500 leading-relaxed mb-3">Drag-and-drop task management with team collaboration, notifications, and analytics.</p>
+            <a href="project-detail.html?project=taskmanager" class="text-primary text-sm font-semibold hover:underline">View Details ↗</a>
+          </div>
+        </div>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <!-- Project 3 -->
+        <div class="bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100 card-hover group cursor-pointer" onclick="location.href='project-detail.html?project=aichat'">
+          <div class="h-40 overflow-hidden">
+            <img src="https://picsum.photos/seed/proj3/400/250" alt="AI App" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"/>
+          </div>
+          <div class="p-5">
+            <div class="text-xs text-gray-400 mb-1">Python · FastAPI · React</div>
+            <h3 class="text-base font-bold text-dark mb-2">AI Chat Assistant</h3>
+            <p class="text-sm text-gray-500 mb-3">GPT-powered chatbot with custom personality, multi-session support, and usage analytics.</p>
+            <a href="project-detail.html?project=aichat" class="text-primary text-sm font-semibold hover:underline">View Details ↗</a>
+          </div>
+        </div>
+        <!-- Project 4 -->
+        <div class="bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100 card-hover group cursor-pointer" onclick="location.href='project-detail.html?project=blog'">
+          <div class="h-40 overflow-hidden">
+            <img src="https://picsum.photos/seed/proj4/400/250" alt="Blog" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"/>
+          </div>
+          <div class="p-5">
+            <div class="text-xs text-gray-400 mb-1">Next.js · MDX · Vercel</div>
+            <h3 class="text-base font-bold text-dark mb-2">Developer Blog</h3>
+            <p class="text-sm text-gray-500 mb-3">A fast, SEO-optimized blog platform with dark mode, code highlighting, and RSS feed.</p>
+            <a href="project-detail.html?project=blog" class="text-primary text-sm font-semibold hover:underline">View Details ↗</a>
+          </div>
+        </div>
+        <!-- Project 5 -->
+        <div class="bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100 card-hover group cursor-pointer" onclick="location.href='project-detail.html?project=dashboard'">
+          <div class="h-40 overflow-hidden">
+            <img src="https://picsum.photos/seed/proj5/400/250" alt="Dashboard" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"/>
+          </div>
+          <div class="p-5">
+            <div class="text-xs text-gray-400 mb-1">Vue · Django · PostgreSQL</div>
+            <h3 class="text-base font-bold text-dark mb-2">Analytics Dashboard</h3>
+            <p class="text-sm text-gray-500 mb-3">Real-time analytics dashboard with charts, filters, CSV export, and role-based access.</p>
+            <a href="project-detail.html?project=dashboard" class="text-primary text-sm font-semibold hover:underline">View Details ↗</a>
+          </div>
+        </div>
+      </div>
+      <div class="text-center mt-10">
+        <a href="projects.html" class="inline-flex items-center gap-2 border-2 border-primary text-primary font-semibold px-7 py-3 rounded-full hover:bg-indigo-50 transition-all">
+          View All Projects
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========= JOURNEY / TIMELINE ========= -->
+  <section class="py-24" style="background: linear-gradient(135deg,#f8f4ff 0%,#f0f9ff 100%);" id="timeline">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="text-center mb-14">
+        <span class="section-tag">My Journey</span>
+        <h2 class="text-4xl font-bold text-dark mt-2 mb-3">Experience & Education</h2>
+        <p class="text-gray-500 max-w-md mx-auto">The path that brought me to where I am today.</p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+
+        <!-- ── LEFT: EXPERIENCE ── -->
+        <div>
+          <div class="flex items-center gap-3 mb-8">
+            <div class="w-9 h-9 bg-primary rounded-xl flex items-center justify-center text-white text-lg">💼</div>
+            <h3 class="text-xl font-bold text-dark">Experience</h3>
+          </div>
+          <div class="relative">
+            <div class="absolute left-[6px] top-2 bottom-2 w-0.5 bg-gradient-to-b from-primary via-accent to-indigo-200"></div>
+            <div class="space-y-7">
+              <div class="flex gap-5 items-start">
+                <div class="timeline-dot shrink-0 mt-1"></div>
+                <div class="bg-white rounded-2xl p-5 shadow-sm border border-gray-100 flex-1 card-hover">
+                  <div class="flex items-start justify-between gap-2 mb-1">
+                    <h4 class="font-bold text-dark text-sm">Full Stack Developer</h4>
+                    <span class="text-xs text-white bg-primary px-2 py-0.5 rounded-full shrink-0">Current</span>
+                  </div>
+                  <p class="text-sm text-primary font-medium mb-1">TechNepal Solutions</p>
+                  <p class="text-xs text-gray-400 mb-2">📅 2023 – Present · Kathmandu</p>
+                  <p class="text-xs text-gray-500 leading-relaxed">Building scalable web apps, leading frontend development, and mentoring junior developers.</p>
+                </div>
+              </div>
+              <div class="flex gap-5 items-start">
+                <div class="timeline-dot shrink-0 mt-1" style="background:#06B6D4;box-shadow:0 0 0 3px #06B6D4"></div>
+                <div class="bg-white rounded-2xl p-5 shadow-sm border border-gray-100 flex-1 card-hover">
+                  <h4 class="font-bold text-dark text-sm mb-1">Frontend Developer (Intern)</h4>
+                  <p class="text-sm text-cyan-600 font-medium mb-1">CreativeMinds Agency</p>
+                  <p class="text-xs text-gray-400 mb-2">📅 2022 – 2023 · Remote</p>
+                  <p class="text-xs text-gray-500 leading-relaxed">Built responsive UIs, collaborated with designers, and optimised performance for 20+ client sites.</p>
+                </div>
+              </div>
+              <div class="flex gap-5 items-start">
+                <div class="timeline-dot shrink-0 mt-1" style="background:#F59E0B;box-shadow:0 0 0 3px #F59E0B"></div>
+                <div class="bg-white rounded-2xl p-5 shadow-sm border border-gray-100 flex-1 card-hover">
+                  <h4 class="font-bold text-dark text-sm mb-1">Freelance Developer</h4>
+                  <p class="text-sm text-amber-600 font-medium mb-1">Self-employed</p>
+                  <p class="text-xs text-gray-400 mb-2">📅 2020 – 2022 · Remote</p>
+                  <p class="text-xs text-gray-500 leading-relaxed">Delivered 15+ freelance projects: landing pages, portfolios, and small e-commerce stores.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── RIGHT: EDUCATION ── -->
+        <div>
+          <div class="flex items-center gap-3 mb-8">
+            <div class="w-9 h-9 bg-violet-600 rounded-xl flex items-center justify-center text-white text-lg">🎓</div>
+            <h3 class="text-xl font-bold text-dark">Education</h3>
+          </div>
+          <div class="relative">
+            <div class="absolute left-[6px] top-2 bottom-2 w-0.5 bg-gradient-to-b from-violet-500 via-purple-400 to-violet-200"></div>
+            <div class="space-y-7">
+              <div class="flex gap-5 items-start">
+                <div class="timeline-dot shrink-0 mt-1" style="background:#8B5CF6;box-shadow:0 0 0 3px #8B5CF6"></div>
+                <div class="bg-white rounded-2xl p-5 shadow-sm border border-gray-100 flex-1 card-hover">
+                  <h4 class="font-bold text-dark text-sm mb-1">BSc. Computer Science</h4>
+                  <p class="text-sm text-violet-600 font-medium mb-1">Tribhuvan University</p>
+                  <p class="text-xs text-gray-400 mb-2">📅 2018 – 2022 · Kathmandu</p>
+                  <p class="text-xs text-gray-500 leading-relaxed">Graduated with First Class Honours. Software engineering focus. Final project: AI crop disease detection.</p>
+                  <span class="inline-block mt-2 text-xs bg-violet-50 text-violet-600 border border-violet-100 px-2 py-0.5 rounded-full font-medium">First Class Honours</span>
+                </div>
+              </div>
+              <div class="flex gap-5 items-start">
+                <div class="timeline-dot shrink-0 mt-1" style="background:#A78BFA;box-shadow:0 0 0 3px #A78BFA"></div>
+                <div class="bg-white rounded-2xl p-5 shadow-sm border border-gray-100 flex-1 card-hover">
+                  <h4 class="font-bold text-dark text-sm mb-1">+2 Science (NEB)</h4>
+                  <p class="text-sm text-purple-500 font-medium mb-1">National Examination Board</p>
+                  <p class="text-xs text-gray-400 mb-2">📅 2016 – 2018 · Kathmandu</p>
+                  <p class="text-xs text-gray-500 leading-relaxed">Physics, Chemistry, Mathematics & Computer Science. GPA 3.8 / 4.0.</p>
+                </div>
+              </div>
+              <div class="flex gap-5 items-start">
+                <div class="timeline-dot shrink-0 mt-1" style="background:#EC4899;box-shadow:0 0 0 3px #EC4899"></div>
+                <div class="bg-white rounded-2xl p-5 shadow-sm border border-gray-100 flex-1 card-hover">
+                  <h4 class="font-bold text-dark text-sm mb-1">Full Stack Web Development</h4>
+                  <p class="text-sm text-pink-500 font-medium mb-1">Udemy / freeCodeCamp</p>
+                  <p class="text-xs text-gray-400 mb-2">📅 2019 – 2020 · Online</p>
+                  <p class="text-xs text-gray-500 leading-relaxed">300+ hours: React, Node.js, databases, deployment, and modern dev workflows.</p>
+                  <span class="inline-block mt-2 text-xs bg-pink-50 text-pink-500 border border-pink-100 px-2 py-0.5 rounded-full font-medium">Certificate</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- end grid -->
+    </div>
+  </section>
+
+  <!-- ========= SERVICES ========= -->
+  <section class="bg-white py-24">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="text-center mb-14">
+        <span class="section-tag">What I Offer</span>
+        <h2 class="text-4xl font-bold text-dark mt-2 mb-3">Services</h2>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-5">
+        <div class="p-6 rounded-2xl bg-indigo-50 border border-indigo-100 card-hover text-center cursor-pointer">
+          <div class="text-4xl mb-4">🌐</div>
+          <h3 class="font-bold text-dark mb-2">Web Development</h3>
+          <p class="text-sm text-gray-500">Custom, responsive websites and web applications tailored to your needs.</p>
+        </div>
+        <div class="p-6 rounded-2xl bg-cyan-50 border border-cyan-100 card-hover text-center cursor-pointer">
+          <div class="text-4xl mb-4">📱</div>
+          <h3 class="font-bold text-dark mb-2">Mobile-First Design</h3>
+          <p class="text-sm text-gray-500">Pixel-perfect, responsive interfaces optimized for every screen size.</p>
+        </div>
+        <div class="p-6 rounded-2xl bg-violet-50 border border-violet-100 card-hover text-center cursor-pointer">
+          <div class="text-4xl mb-4">🔌</div>
+          <h3 class="font-bold text-dark mb-2">API Development</h3>
+          <p class="text-sm text-gray-500">Robust RESTful and GraphQL APIs to power your frontend or mobile apps.</p>
+        </div>
+        <div class="p-6 rounded-2xl bg-amber-50 border border-amber-100 card-hover text-center cursor-pointer">
+          <div class="text-4xl mb-4">🚀</div>
+          <h3 class="font-bold text-dark mb-2">Performance Audit</h3>
+          <p class="text-sm text-gray-500">Speed optimization, SEO improvements, and Core Web Vitals tuning.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========= TESTIMONIALS ========= -->
+  <section class="bg-gradient-to-br from-primary to-indigo-800 py-24 text-white">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="text-center mb-14">
+        <span class="text-xs font-semibold tracking-widest uppercase text-indigo-300">Testimonials</span>
+        <h2 class="text-4xl font-bold mt-2 mb-3">What clients say</h2>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="bg-white/10 backdrop-blur rounded-2xl p-6 border border-white/20">
+          <div class="flex gap-1 mb-3">
+            <span class="text-yellow-400">★★★★★</span>
+          </div>
+          <p class="text-indigo-100 text-sm leading-relaxed mb-4">"Bhuwan delivered beyond expectations. Clean code, great communication, and delivered on time. Highly recommended!"</p>
+          <div class="flex items-center gap-3">
+            <img src="https://api.dicebear.com/9.x/adventurer/svg?seed=sarah&backgroundColor=ffd5dc" alt="Sarah" class="w-10 h-10 rounded-full border-2 border-indigo-300"/>
+            <div>
+              <div class="font-semibold text-sm">Sarah Johnson</div>
+              <div class="text-xs text-indigo-300">CEO, TechStart Inc.</div>
+            </div>
+          </div>
+        </div>
+        <div class="bg-white/10 backdrop-blur rounded-2xl p-6 border border-white/20">
+          <div class="flex gap-1 mb-3">
+            <span class="text-yellow-400">★★★★★</span>
+          </div>
+          <p class="text-indigo-100 text-sm leading-relaxed mb-4">"Just fantastic! The e-commerce site he built for us increased our sales by 40%. A true professional and talented developer."</p>
+          <div class="flex items-center gap-3">
+            <img src="https://api.dicebear.com/9.x/adventurer/svg?seed=raj&backgroundColor=c0f4c8" alt="Raj" class="w-10 h-10 rounded-full border-2 border-indigo-300"/>
+            <div>
+              <div class="font-semibold text-sm">Rajesh Sharma</div>
+              <div class="text-xs text-indigo-300">Founder, ShopNepal</div>
+            </div>
+          </div>
+        </div>
+        <div class="bg-white/10 backdrop-blur rounded-2xl p-6 border border-white/20">
+          <div class="flex gap-1 mb-3">
+            <span class="text-yellow-400">★★★★★</span>
+          </div>
+          <p class="text-indigo-100 text-sm leading-relaxed mb-4">"Brilliant developer! His attention to detail and UI polish is outstanding. Our dashboard looks and works perfectly."</p>
+          <div class="flex items-center gap-3">
+            <img src="https://api.dicebear.com/9.x/adventurer/svg?seed=emma&backgroundColor=b6e3f4" alt="Emma" class="w-10 h-10 rounded-full border-2 border-indigo-300"/>
+            <div>
+              <div class="font-semibold text-sm">Emma Williams</div>
+              <div class="text-xs text-indigo-300">CTO, DataFlow Ltd.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========= CONTACT ========= -->
+  <section class="bg-white py-24" id="contact">
+    <div class="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-16 items-start">
+      <div>
+        <span class="section-tag">Get In Touch</span>
+        <h2 class="text-4xl font-bold text-dark mt-2 mb-5">Let's work together!</h2>
+        <p class="text-gray-500 leading-relaxed mb-8">Have a project in mind or just want to say hi? My inbox is always open. Drop a message and I'll get back to you within 24 hours.</p>
+        <div class="space-y-4">
+          <a href="mailto:bhuwan@example.com" class="flex items-center gap-4 p-4 rounded-xl border border-gray-100 hover:border-indigo-100 hover:bg-indigo-50 transition-all group">
+            <div class="w-10 h-10 bg-indigo-100 rounded-xl flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-all">✉️</div>
+            <div>
+              <div class="text-xs text-gray-400">Email</div>
+              <div class="font-medium text-gray-700">bhuwan@example.com</div>
+            </div>
+          </a>
+          <a href="#" class="flex items-center gap-4 p-4 rounded-xl border border-gray-100 hover:border-indigo-100 hover:bg-indigo-50 transition-all group">
+            <div class="w-10 h-10 bg-indigo-100 rounded-xl flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-all">💼</div>
+            <div>
+              <div class="text-xs text-gray-400">LinkedIn</div>
+              <div class="font-medium text-gray-700">linkedin.com/in/bhuwan</div>
+            </div>
+          </a>
+          <a href="#" class="flex items-center gap-4 p-4 rounded-xl border border-gray-100 hover:border-indigo-100 hover:bg-indigo-50 transition-all group">
+            <div class="w-10 h-10 bg-indigo-100 rounded-xl flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-all">🐙</div>
+            <div>
+              <div class="text-xs text-gray-400">GitHub</div>
+              <div class="font-medium text-gray-700">github.com/bhuwan</div>
+            </div>
+          </a>
+        </div>
+      </div>
+      <!-- Contact Form -->
+      <div class="bg-gray-50 rounded-2xl p-8 border border-gray-100">
+        <h3 class="font-bold text-dark text-xl mb-6">Send a Message</h3>
+        <div class="space-y-4">
+          <div class="grid grid-cols-2 gap-4">
+            <div>
+              <label class="text-sm font-medium text-gray-600 mb-1 block">First Name</label>
+              <input type="text" placeholder="John" class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all"/>
+            </div>
+            <div>
+              <label class="text-sm font-medium text-gray-600 mb-1 block">Last Name</label>
+              <input type="text" placeholder="Doe" class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all"/>
+            </div>
+          </div>
+          <div>
+            <label class="text-sm font-medium text-gray-600 mb-1 block">Email</label>
+            <input type="email" placeholder="john@example.com" class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all"/>
+          </div>
+          <div>
+            <label class="text-sm font-medium text-gray-600 mb-1 block">Subject</label>
+            <input type="text" placeholder="Project Inquiry" class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all"/>
+          </div>
+          <div>
+            <label class="text-sm font-medium text-gray-600 mb-1 block">Message</label>
+            <textarea rows="4" placeholder="Tell me about your project..." class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all resize-none"></textarea>
+          </div>
+          <button type="submit" class="w-full bg-primary text-white font-semibold py-3.5 rounded-xl hover:bg-indigo-700 transition-all shadow-lg shadow-indigo-200 flex items-center justify-center gap-2">
+            Send Message
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========= FOOTER ========= -->
+  <footer class="bg-dark text-gray-400 py-12">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="flex flex-col md:flex-row items-center justify-between gap-6 mb-8">
+        <span class="text-2xl font-bold gradient-text">bhuwan.dev</span>
+        <nav class="flex flex-wrap items-center gap-6 text-sm">
+          <a href="#about"    class="hover:text-white transition-colors">About</a>
+          <a href="#skills"   class="hover:text-white transition-colors">Skills</a>
+          <a href="#projects" class="hover:text-white transition-colors">Projects</a>
+          <a href="#timeline" class="hover:text-white transition-colors">Journey</a>
+          <a href="#contact"  class="hover:text-white transition-colors">Contact</a>
+        </nav>
+        <div class="flex gap-3">
+          <a href="#" class="w-9 h-9 rounded-full bg-white/10 hover:bg-primary flex items-center justify-center transition-all text-sm">in</a>
+          <a href="#" class="w-9 h-9 rounded-full bg-white/10 hover:bg-primary flex items-center justify-center transition-all text-sm">gh</a>
+          <a href="#" class="w-9 h-9 rounded-full bg-white/10 hover:bg-primary flex items-center justify-center transition-all text-sm">tw</a>
+        </div>
+      </div>
+      <div class="border-t border-white/10 pt-6 flex flex-col md:flex-row items-center justify-between text-xs gap-2">
+        <span>© 2024 Bhuwan Karki. All rights reserved.</span>
+        <span>Crafted with ❤️ using HTML & Tailwind CSS</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Smooth scroll
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', e => {
+        e.preventDefault();
+        const t = document.querySelector(a.getAttribute('href'));
+        if (t) t.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    });
+    // Fade-in on scroll
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(el => {
+        if (el.isIntersecting) {
+          el.target.style.opacity = 1;
+          el.target.style.transform = 'translateY(0)';
+        }
+      });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('section').forEach(s => {
+      s.style.opacity = 0;
+      s.style.transform = 'translateY(20px)';
+      s.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+      io.observe(s);
+    });
+  </script>
+</body>
+</html>
