@@ -36,6 +36,7 @@ new class extends Component {
     public $years_experience = 0;
     public $completed_projects = 0;
     public $happy_clients = 0;
+    public $about_me_sub_heading = '';
 
     // Resume
     public $resume_url = '';
@@ -69,6 +70,7 @@ new class extends Component {
             $this->years_experience = $profile->years_experience ?? 0;
             $this->completed_projects = $profile->completed_projects ?? 0;
             $this->happy_clients = $profile->happy_clients ?? 0;
+            $this->about_me_sub_heading = $profile->about_me_sub_heading ?? '';
         }
     }
 
@@ -107,6 +109,7 @@ new class extends Component {
             'years_experience' => $this->years_experience,
             'completed_projects' => $this->completed_projects,
             'happy_clients' => $this->happy_clients,
+            'about_me_sub_heading' => $this->about_me_sub_heading,
         ];
 
         // Handle avatar upload
@@ -303,6 +306,16 @@ new class extends Component {
                                             @enderror
                                         </div>
 
+                                        <div>
+                                            <div>
+                                                <label class="block text-sm font-medium text-gray-700 mb-2">About Me
+                                                    Sub Heading</label>
+                                                <input type="text" wire:model="about_me_sub_heading"
+                                                    rows="6" placeholder="About me."
+                                                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                                            </div>
+                                        </div>
+
 
 
                                         <div>
@@ -443,17 +456,17 @@ new class extends Component {
 
                         </div>
 
-    <!-- Footer with Save Button -->
-    <div
-        class="sticky bottom-0 px-6 py-4 bg-white border-t border-gray-200 rounded-b-lg flex justify-between items-center shadow-lg">
-        <p class="text-sm text-gray-600">Make sure to save your changes</p>
-        <button type="submit"
-            class="px-8 py-3 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors shadow-md">
-            💾 Save Profile
-        </button>
+                        <!-- Footer with Save Button -->
+                        <div
+                            class="sticky bottom-0 px-6 py-4 bg-white border-t border-gray-200 rounded-b-lg flex justify-between items-center shadow-lg">
+                            <p class="text-sm text-gray-600">Make sure to save your changes</p>
+                            <button type="submit"
+                                class="px-8 py-3 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors shadow-md">
+                                💾 Save Profile
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
-    </form>
-</div>
-</div>
-</div>
-</div>

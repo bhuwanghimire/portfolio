@@ -32,6 +32,7 @@ return new class extends Migration
             $table->integer('happy_clients')->default(0); // e.g., 50
             $table->longText('about_me')->nullable(); // Detailed about me section
             $table->string('headline')->nullable(); // e.g., "Welcome to my world"
+            $table->string('about_me_heading')->nullable(); // e.g., "About Me
             $table->timestamps();
         });
     }

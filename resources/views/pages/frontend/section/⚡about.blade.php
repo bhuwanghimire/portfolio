@@ -8,7 +8,7 @@ new class extends Component {
 
     public function mount(): void
     {
-        $this->about = Profile::select('about_me', 'name', 'email', 'phone', 'location', 'availability_status')->first();
+        $this->about = Profile::select('about_me', 'name', 'email', 'phone', 'location', 'availability_status', 'about_me_sub_heading')->first();
     }
 };
 ?>
@@ -43,7 +43,7 @@ new class extends Component {
         <div>
             <span class="section-tag">About Me</span>
             <h2 class="text-4xl font-bold text-dark mt-2 mb-5 leading-tight">
-                Passionate developer who loves<br />building things for the web
+                {{ @$about->about_me_sub_heading }}
             </h2>
             <p class="text-gray-500 leading-relaxed mb-4">
                 {{ @$about->about_me }}
