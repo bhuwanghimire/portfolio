@@ -8,7 +8,7 @@ new class extends Component {
 
     public function mount(): void
     {
-        $this->about = Profile::select('about_me', 'name', 'email', 'phone', 'location', 'availability_status', 'about_me_sub_heading')->first();
+        $this->about = Profile::select('about_me', 'name', 'email', 'phone', 'location', 'availability_status', 'about_me_sub_heading', 'years_experience')->first();
     }
 };
 ?>
@@ -31,7 +31,7 @@ new class extends Component {
             </div>
             <!-- Floating experience badge -->
             <div class="absolute bottom-4 -right-2 z-20 bg-primary text-white rounded-2xl px-5 py-4 shadow-xl">
-                <div class="text-3xl font-bold leading-none">3+</div>
+                <div class="text-3xl font-bold leading-none">{{ @$about->years_experience }} +</div>
                 <div class="text-xs text-indigo-200 mt-1">Years Experience</div>
             </div>
             <!-- Floating availability badge -->
